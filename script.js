@@ -34,14 +34,14 @@ function masukWeb() {
     var targetURL = "";
 
     if (destination) {
-        // Jika ada parameter redirect, langsung arahkan ke halaman sub-menu tersebut
+        // Jika ada parameter redirect khusus (misal: ?redirect=capaian-pembelajaran)
         targetURL = baseURL + destination;
     } else {
-        // Jika dibuka dari link utama saja, arahkan ke Capaian Pembelajaran / Home
-        targetURL = baseURL + "capaian-pembelajaran";
+        // Jika dibuka dari link utama saja, langsung arahkan ke halaman HOME
+        targetURL = baseURL + "home";
     }
 
-    // 4. Simpan nama sementara di storage (opsional jika dibutuhkan di dalam web)
+    // 4. Simpan nama sementara di storage browser
     localStorage.setItem("namaSobatChemist", namaInput);
 
     // 5. Kirim Data Nama ke Google Form di Latar Belakang (Hidden Iframe)
