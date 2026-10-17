@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre Entry Form - Zella</title>
+    <!-- Menghubungkan file CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Kontainer utama yang akan memiliki background gambar -->
+    <div class="main-container">
+        
+        <!-- Judul Halaman -->
+        <h1 class="main-title">HUKUM-HUKUM DASAR KIMIA &<br>STOIKIOMETRI</h1>
+
+        <!-- Kontainer untuk Form -->
+        <div class="form-container">
+            <h3 class="form-title">Siapa nama sobat chemist hari ini?</h3>
+            
+            <div class="form-wrapper">
+                <input 
+                    type="text" 
+                    id="namaSobatChemist" 
+                    class="input-nama" 
+                    placeholder="Ketik nama sobat chemist" 
+                />
+                
+                <button 
+                    type="button" 
+                    id="btnMasuk" 
+                    class="btn-masuk"
+                >
+                    Ayo mulai belajar sekarang!
+                </button>
+            </div>
+            
+            <p id="pesanPeringatan" class="pesan-peringatan">
+                Yuk isi nama sobat chemist terlebih dahulu!
+            </p>
+        </div>
+    </div>
+
+    <!-- Iframe tersembunyi untuk proses kirim Google Form di latar belakang -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"></iframe>
+
+    <!-- Menghubungkan file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

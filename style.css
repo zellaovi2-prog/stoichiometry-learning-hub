@@ -1,0 +1,120 @@
+/* Mengatur margin dasar dan font */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Kontainer utama dengan background gambar */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Elemen dimulai dari agak atas */
+    padding-top: 10vh; /* Memberi jarak dari atas */
+    height: 100vh;
+    box-sizing: border-box;
+    
+    /* GANTI 'background.png' dengan nama file gambar Anda */
+    background-image: url('background.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Teks Judul Utama */
+.main-title {
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Efek bayangan agar terbaca di atas gambar */
+}
+
+/* Kontainer Form Input */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Lebar maksimal form */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-title {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+/* Memastikan input dan tombol tersusun ke bawah */
+.form-wrapper {
+    display: flex;
+    flex-direction: column; /* Mengubah arah menjadi vertikal */
+    gap: 15px; /* Jarak antara input dan tombol */
+    width: 100%;
+    align-items: center;
+}
+
+.input-nama {
+    width: 100%; /* Memenuhi lebar container */
+    padding: 15px;
+    border: none;
+    border-radius: 8px; /* Sedikit dilengkungkan */
+    font-size: 16px;
+    outline: none;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    text-align: center; /* Teks di tengah */
+}
+
+.btn-masuk {
+    width: 100%; /* Tombol sama lebarnya dengan input */
+    padding: 15px;
+    background-color: #9b51e0; /* Warna ungu */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+.btn-masuk:hover {
+    background-color: #7b3eb5; /* Warna ungu lebih gelap saat di-hover */
+}
+
+.btn-masuk:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    color: #666666;
+}
+
+.pesan-peringatan {
+    color: #ffcccc;
+    font-size: 14px;
+    margin-top: 15px;
+    display: none;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+/* Penyesuaian untuk Layar HP */
+@media screen and (max-width: 600px) {
+    .main-title {
+        font-size: 24px;
+        padding: 0 10px;
+    }
+    .form-title {
+        font-size: 18px;
+    }
+}
