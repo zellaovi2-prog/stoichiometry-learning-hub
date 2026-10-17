@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Memastikan elemen tombol sudah ada sebelum menambahkan event listener
     const btnMasuk = document.getElementById("btnMasuk");
     if (btnMasuk) {
         btnMasuk.addEventListener("click", masukWeb);
@@ -11,36 +10,45 @@ function masukWeb() {
     var pesan = document.getElementById("pesanPeringatan");
     var btn = document.getElementById("btnMasuk");
 
-    // Validasi input kosong
+    // 1. Validasi Input Nama Kosong
     if (namaInput === "") {
         pesan.style.display = "block";
         document.getElementById("namaSobatChemist").focus();
         return;
     }
 
-    // Ubah tampilan saat proses berjalan
     pesan.style.display = "none";
     btn.innerText = "Mengirim...";
     btn.disabled = true;
 
-    // 1. LINK GOOGLE FORM 
+    // 2. Data Google Form Rekap Kehadiran/Nama
     var formURL = "https://docs.google.com/forms/d/e/1FAIpQLSck4CulKoImhixLcT9h0GIm3lJMGhxyidNHqQo0pZgV29ectg/formResponse";
-
-    // 2. ENTRY ID GOOGLE FORM 
     var entryID = "entry.2030998785";
 
-    // 3. LINK WEB UTAMA / WEB KEDUA PEMBELAJARAN
-    var urlWebKedua = "https://sites.google.com/view/zellaweb/dihalaman-sebelum-masuk-home";
+    // 3. Ambil Tujuan Redirect dari URL Parameter (Misal: ?redirect=capaian-pembelajaran)
+    const urlParams = new URLSearchParams(window.location.search);
+    const destination = urlParams.get('redirect');
 
-    // Simpan nama di memori lokal browser (jika dibutuhkan di halaman selanjutnya)
+    // Base URL Google Sites Sobat Chemist
+    var baseURL = "https://sites.google.com/view/zellaweb/";
+    var targetURL = "";
+
+    if (destination) {
+        // Jika ada parameter redirect, langsung arahkan ke halaman sub-menu tersebut
+        targetURL = baseURL + destination;
+    } else {
+        // Jika dibuka dari link utama saja, arahkan ke Capaian Pembelajaran / Home
+        targetURL = baseURL + "capaian-pembelajaran";
+    }
+
+    // 4. Simpan nama sementara di storage (opsional jika dibutuhkan di dalam web)
     localStorage.setItem("namaSobatChemist", namaInput);
 
-    // Proses Pengiriman ke Google Form menggunakan Hidden Iframe
+    // 5. Kirim Data Nama ke Google Form di Latar Belakang (Hidden Iframe)
     try {
         var form = document.createElement("form");
         form.action = formURL;
         form.method = "POST";
-        // Arahkan target form ke iframe tersembunyi di HTML
         form.target = "hidden_iframe";
 
         var input = document.createElement("input");
@@ -55,14 +63,12 @@ function masukWeb() {
         console.log("Submit Error:", e);
     }
 
-    // Pindah otomatis ke web kedua dalam 0.8 detik menggunakan block try-catch untuk melewati batas keamanan iframe
+    // 6. Langsung Pindah ke Halaman Google Sites Tujuan
     setTimeout(function () {
         try {
-            // Mencoba merubah URL jendela paling atas (sering diblokir jika diembed)
-            window.top.location.href = urlWebKedua;
+            window.top.location.href = targetURL;
         } catch (e) {
-            // Jika diblokir (SecurityError), gunakan metode alternatif pembukaan tab/jendela
-            window.open(urlWebKedua, "_top");
+            window.open(targetURL, "_top");
         }
     }, 800);
 }
